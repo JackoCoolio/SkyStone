@@ -84,9 +84,9 @@ public abstract class ModularOpMode extends OpMode {
             try {
                 // Initializes each module.
                 module.init();
-                telemetry.addData("INITIALIZED MODULE", module.getClass().getSimpleName());
+//                telemetry.addData("INITIALIZED MODULE", module.getClass().getSimpleName());
             } catch (NullPointerException e) {
-                telemetry.addData("MODULE INITIALIZATION ERROR",  module.getClass().getSimpleName() + " failed to init!");
+//                telemetry.addData("MODULE INITIALIZATION ERROR",  module.getClass().getSimpleName() + " failed to init!");
             }
         }
 
