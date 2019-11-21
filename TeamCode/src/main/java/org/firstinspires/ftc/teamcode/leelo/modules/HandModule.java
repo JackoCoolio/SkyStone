@@ -28,7 +28,7 @@ public class HandModule extends Module {
 
     @Override
     public void loop() {
-        handToggle.update(gamepad1.a);
+        handToggle.update(gamepad1.right_bumper);
         if (handToggle.getState()) {
             hand.setPosition(closed);
         } else {
