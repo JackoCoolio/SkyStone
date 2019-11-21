@@ -9,7 +9,10 @@ import org.firstinspires.ftc.teamcode.modules.Module;
 
 public class ArmModule extends Module {
 
-    DcMotor arm;
+    DcMotor arm0, arm1;
+
+    final float arm0speed = 1;
+    final float arm1speed = 1;
 
     public ArmModule(HardwareMap hardwareMap, Gamepad gamepad1, Gamepad gamepad2, Telemetry telemetry) {
         super(hardwareMap, gamepad1, gamepad2, telemetry);
@@ -17,22 +20,30 @@ public class ArmModule extends Module {
 
     @Override
     public void init() {
-        arm = hardwareMap.dcMotor.get("arm");
+        arm0 = hardwareMap.dcMotor.get("arm0");
+        arm1 = hardwareMap.dcMotor.get("arm1");
     }
 
     @Override
     public void loop() {
-        if (gamepad1.right_trigger == 1) {
-            arm.setPower(1);
-        } else if (gamepad1.left_trigger == 1) {
-            arm.setPower(-1);
-        } else {
-            arm.setPower(0);
-        }
+        if (gamepad1.a) {
+            arm0.setPower(-arm0speed);
+        } else if (gamepad1.b) {
+            arm0.setPower(arm0speed);
+        } else
+            arm0.setPower(0);
+
+        if (gamepad1.x) {
+            arm1.setPower(-arm1speed);
+        } else if (gamepad1.y) {
+            arm1.setPower(arm1speed);
+        } else
+            arm1.setPower(0);
     }
 
     @Override
     public void telemetry() {
-        telemetry.addData("Arm", arm.getPower());
+        telemetry.addData("Arm 0", arm0.getPower());
+        telemetry.addData("Arm 1", arm1.getPower());
     }
 }
