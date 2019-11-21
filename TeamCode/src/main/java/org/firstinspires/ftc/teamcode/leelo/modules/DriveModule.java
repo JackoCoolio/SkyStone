@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode.leelo.modules;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Gamepad;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
@@ -30,8 +31,10 @@ public class DriveModule extends Module {
     public void init() {
         front_left = hardwareMap.dcMotor.get("front_left");
         front_right = hardwareMap.dcMotor.get("front_right");
+        front_right.setDirection(DcMotorSimple.Direction.REVERSE);
         rear_left = hardwareMap.dcMotor.get("rear_left");
         rear_right = hardwareMap.dcMotor.get("rear_right");
+        rear_right.setDirection(DcMotorSimple.Direction.REVERSE);
     }
 
     public void move(Movement movement, double speed) {
