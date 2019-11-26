@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode.leelo.modules;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Gamepad;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
@@ -22,6 +23,8 @@ public class ArmModule extends Module {
     public void init() {
         arm0 = hardwareMap.dcMotor.get("arm0");
         arm1 = hardwareMap.dcMotor.get("arm1");
+        arm0.setDirection(DcMotorSimple.Direction.REVERSE);
+        arm1.setDirection(DcMotorSimple.Direction.REVERSE);
     }
 
     @Override
