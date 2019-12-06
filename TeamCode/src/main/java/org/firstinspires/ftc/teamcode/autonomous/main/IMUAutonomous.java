@@ -71,6 +71,7 @@ public abstract class IMUAutonomous extends OpMode {
         if (useIMU) {
             imu = hardwareMap.get(BNO055IMU.class, getIMUName());
             imu.initialize(getParameters());
+            while (!imu.isGyroCalibrated()) {}
         }
         runtime = new ElapsedTime();
 
