@@ -59,10 +59,10 @@ public class DriveModule extends Module {
                     setMotors(-speed, speed, speed, -speed);
                 break;
             case CW:
-                    setMotors(-speed, speed, -speed, speed);
+                    setMotors(speed, -speed, speed, -speed);
                 break;
             case CCW:
-                    setMotors(speed, -speed, speed, -speed);
+                    setMotors(-speed, speed, -speed, speed);
                 break;
         }
     }
