@@ -15,7 +15,7 @@ public class DriveModule extends Module {
 
     private float speed = .5f;
 
-    enum Movement {
+    public enum Movement {
 
         Forward,
         Backward,
@@ -53,16 +53,16 @@ public class DriveModule extends Module {
                     setMotors(-speed, -speed, -speed, -speed);
                 break;
             case Left:
-                    setMotors(-1, 1, 1, -1);
+                    setMotors(speed, -speed, -speed, speed);
                 break;
             case Right:
-                    setMotors(1, -1, -1, 1);
+                    setMotors(-speed, speed, speed, -speed);
                 break;
             case CW:
-                    setMotors(1, -1, 1, -1);
+                    setMotors(-speed, speed, -speed, speed);
                 break;
             case CCW:
-                    setMotors(-1, 1, -1, 1);
+                    setMotors(speed, -speed, speed, -speed);
                 break;
         }
     }
