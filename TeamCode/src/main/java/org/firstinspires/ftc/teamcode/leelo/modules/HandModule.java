@@ -14,7 +14,7 @@ public class HandModule extends Module {
 
     Button handToggle;
 
-    float open, closed;
+    float open = 1, closed = 0;
 
     public HandModule(HardwareMap hardwareMap, Gamepad gamepad1, Gamepad gamepad2, Telemetry telemetry) {
         super(hardwareMap, gamepad1, gamepad2, telemetry);

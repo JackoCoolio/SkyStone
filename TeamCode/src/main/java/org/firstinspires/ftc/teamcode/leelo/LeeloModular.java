@@ -12,6 +12,6 @@ public class LeeloModular extends ModularOpMode {
 
     @Override
     protected void initModules() {
-        registerModules(/*HandModule.class, ArmModule.class, */ DriveModule.class);
+        registerModules(HandModule.class, ArmModule.class, DriveModule.class);
     }
 }

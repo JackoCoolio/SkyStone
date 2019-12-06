@@ -4,6 +4,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Gamepad;
 import com.qualcomm.robotcore.hardware.HardwareMap;
+import com.qualcomm.robotcore.hardware.configuration.typecontainers.MotorConfigurationType;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.teamcode.modules.Module;
@@ -11,6 +12,8 @@ import org.firstinspires.ftc.teamcode.modules.Module;
 public class DriveModule extends Module {
 
     DcMotor front_left, front_right, rear_left, rear_right;
+
+    private float speed = .5f;
 
     enum Movement {
 
@@ -30,20 +33,24 @@ public class DriveModule extends Module {
     @Override
     public void init() {
         front_left = hardwareMap.dcMotor.get("front_left");
-        front_right = hardwareMap.dcMotor.get("front_right");
-        front_right.setDirection(DcMotorSimple.Direction.REVERSE);
+        front_right = hardwareMap.dcMotor.get("rear_right");
         rear_left = hardwareMap.dcMotor.get("rear_left");
-        rear_right = hardwareMap.dcMotor.get("rear_right");
-        rear_right.setDirection(DcMotorSimple.Direction.REVERSE);
+        rear_right = hardwareMap.dcMotor.get("front_right");
+        rear_left.setDirection(DcMotorSimple.Direction.REVERSE);
+
+        front_right.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        front_left.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        rear_right.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        rear_left.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
     }
 
     public void move(Movement movement, double speed) {
         switch (movement) {
             case Forward:
-                    setMotors(1,1,1,1);
+                    setMotors(speed,speed,speed,speed);
                 break;
             case Backward:
-                    setMotors(-1, -1, -1, -1);
+                    setMotors(-speed, -speed, -speed, -speed);
                 break;
             case Left:
                     setMotors(-1, 1, 1, -1);
@@ -69,15 +76,22 @@ public class DriveModule extends Module {
 
     @Override
     public void loop() {
-        double r = Math.hypot(gamepad1.left_stick_x, gamepad1.left_stick_y);
-        double robotAngle = Math.atan2(gamepad1.left_stick_y, gamepad1.left_stick_x) - Math.PI / 4;
-        double rightX = gamepad1.right_stick_x;
-        final double v1 = r * Math.cos(robotAngle) + rightX;
-        final double v2 = r * Math.sin(robotAngle) - rightX;
-        final double v3 = r * Math.sin(robotAngle) + rightX;
-        final double v4 = r * Math.cos(robotAngle) - rightX;
 
-        setMotors(v1, v2, v3, v4);
+        if (gamepad1.left_bumper) {
+            speed = 1f;
+        } else {
+            speed = .5f;
+        }
+
+        double r = Math.hypot(gamepad1.left_stick_x, gamepad1.left_stick_y);
+        double robotAngle = Math.atan2(- gamepad1.left_stick_y, gamepad1.left_stick_x) - Math.PI / 4;
+        double rightX = gamepad1.right_stick_x * speed;
+        final double v1 = speed*(r * Math.cos(robotAngle) + rightX);
+        final double v2 = speed*(r * Math.sin(robotAngle) - rightX);
+        final double v3 = speed*(r * Math.sin(robotAngle) + rightX);
+        final double v4 = speed*(r * Math.cos(robotAngle) - rightX);
+
+        setMotors(v1, v4, v3, v2);
     }
 
     @Override
