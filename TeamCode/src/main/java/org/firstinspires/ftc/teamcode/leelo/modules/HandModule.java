@@ -10,11 +10,11 @@ import org.firstinspires.ftc.teamcode.utility.Button;
 
 public class HandModule extends Module {
 
-    Servo hand;
+    public Servo hand;
 
     Button handToggle;
 
-    float open = 1, closed = 0;
+    public static final float OPEN = .5f, CLOSED = 1f;
 
     public HandModule(HardwareMap hardwareMap, Gamepad gamepad1, Gamepad gamepad2, Telemetry telemetry) {
         super(hardwareMap, gamepad1, gamepad2, telemetry);
@@ -23,6 +23,7 @@ public class HandModule extends Module {
     @Override
     public void init() {
         hand = hardwareMap.servo.get("hand");
+        hand.setDirection(Servo.Direction.REVERSE);
         handToggle = new Button(false);
     }
 
@@ -30,9 +31,9 @@ public class HandModule extends Module {
     public void loop() {
         handToggle.update(gamepad1.right_bumper);
         if (handToggle.getState()) {
-            hand.setPosition(closed);
+            hand.setPosition(CLOSED);
         } else {
-            hand.setPosition(open);
+            hand.setPosition(OPEN);
         }
     }
 
