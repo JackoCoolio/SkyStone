@@ -14,7 +14,7 @@ public class AutonomousTestA1 extends IMUAutonomous {
     HandModule grab;
     DriveModule drive;
     HookModule drag;
-    double speed = .2;
+    double speed = .4;
     double drivetime = .5;
     double strafetime = .25;
     @Override
@@ -40,7 +40,7 @@ public class AutonomousTestA1 extends IMUAutonomous {
                     @Override
                     public boolean run(double heading, ElapsedTime runtime) {
                         if (runtime.seconds() < drivetime) {
-                            drive.move(DriveModule.Movement.Forward, .2);
+                            drive.move(DriveModule.Movement.Forward, speed);
                             return true;
                         } else {
                             return false;
@@ -52,7 +52,7 @@ public class AutonomousTestA1 extends IMUAutonomous {
                     @Override
                     public boolean run(double heading, ElapsedTime runtime) {
                         if (runtime.seconds() < strafetime) {
-                            drive.move(DriveModule.Movement.Right, .2);
+                            drive.move(DriveModule.Movement.Right, speed);
                             return true;
                         } else {
                             return false;
@@ -64,7 +64,7 @@ public class AutonomousTestA1 extends IMUAutonomous {
                     @Override
                     public boolean run(double heading, ElapsedTime runtime) {
                         if (runtime.seconds() < drivetime) {
-                            drive.move(DriveModule.Movement.Forward, .2);
+                            drive.move(DriveModule.Movement.Forward, speed);
                             return true;
                         } else {
                             return false;
@@ -100,7 +100,7 @@ public class AutonomousTestA1 extends IMUAutonomous {
                     @Override
                     public boolean run(double heading, ElapsedTime runtime) {
                         if (runtime.seconds() < .75) {
-                            drive.move(DriveModule.Movement.Backward, .2);
+                            drive.move(DriveModule.Movement.Backward, speed);
                             return true;
                         } else {
                             return false;
@@ -124,7 +124,7 @@ public class AutonomousTestA1 extends IMUAutonomous {
                     @Override
                     public boolean run(double heading, ElapsedTime runtime) {
                         if (runtime.seconds() < drivetime) {
-                            drive.move(DriveModule.Movement.Left, .2);
+                            drive.move(DriveModule.Movement.Left, speed);
                             return true;
                         } else {
                             return false;
@@ -136,7 +136,7 @@ public class AutonomousTestA1 extends IMUAutonomous {
                     @Override
                     public boolean run(double heading, ElapsedTime runtime) {
                         if (runtime.seconds() < drivetime) {
-                            drive.move(DriveModule.Movement.Forward, .2);
+                            drive.move(DriveModule.Movement.Forward, speed);
                             return true;
                         } else {
                             return false;
@@ -148,7 +148,7 @@ public class AutonomousTestA1 extends IMUAutonomous {
                     @Override
                     public boolean run(double heading, ElapsedTime runtime) {
                         if (runtime.seconds() < drivetime) {
-                            drive.move(DriveModule.Movement.Left, .2);
+                            drive.move(DriveModule.Movement.Left, speed);
                             return true;
                         } else {
                             return false;
