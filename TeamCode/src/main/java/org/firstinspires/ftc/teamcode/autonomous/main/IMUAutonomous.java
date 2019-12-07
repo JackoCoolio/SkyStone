@@ -93,7 +93,7 @@ public abstract class IMUAutonomous extends OpMode {
         if (useIMU) angles = imu.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES);
 
         heading = 0d;
-        if (useIMU) heading = angles.firstAngle - offset;
+        if (useIMU) heading = angles.firstAngle;
 
         telemetry.addData("[HEADING]",heading);
 
