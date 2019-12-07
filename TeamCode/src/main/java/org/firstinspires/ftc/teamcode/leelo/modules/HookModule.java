@@ -11,10 +11,10 @@ import org.firstinspires.ftc.teamcode.utility.Button;
 public class HookModule extends Module {
 
     Servo hookA, hookB;
-    final double a_up = 1d;
-    final double a_down = 0d;
-    final double b_up = 1d;
-    final double b_down = 0d;
+    final double a_up = .157d;
+    final double a_down = .03d;
+    final double b_up = .09d;
+    final double b_down = .278d;
 
     Button button;
 
@@ -40,11 +40,16 @@ public class HookModule extends Module {
             setPosition(Position.Up);
         }
 
+//        hookA.setPosition(gamepad1.left_trigger);
+//        hookB.setPosition(gamepad1.right_trigger);
+
     }
 
     @Override
     public void telemetry() {
         telemetry.addData("Hook Position", button.getState());
+        telemetry.addData("A", hookA.getPosition());
+        telemetry.addData("B", hookB.getPosition());
     }
 
     public enum Position {Down, Up};

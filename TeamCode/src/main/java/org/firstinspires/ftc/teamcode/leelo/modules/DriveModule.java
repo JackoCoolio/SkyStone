@@ -13,6 +13,10 @@ public class DriveModule extends Module {
 
     DcMotor front_left, front_right, rear_left, rear_right;
 
+    public static final float FAST_SPEED = .8f;
+    public static final float SLOW_SPEED = .4f;
+    public static final float TURN_MULTIPLIER = 1.0f;
+
     private float speed = .5f;
 
     public enum Movement {
@@ -78,9 +82,9 @@ public class DriveModule extends Module {
     public void loop() {
 
         if (gamepad1.left_bumper) {
-            speed = 1f;
+            speed = FAST_SPEED;
         } else {
-            speed = .5f;
+            speed = SLOW_SPEED;
         }
 
         double r = Math.hypot(gamepad1.left_stick_x, gamepad1.left_stick_y);
