@@ -10,7 +10,7 @@ import org.firstinspires.ftc.teamcode.leelo.modules.HookModule;
 import org.firstinspires.ftc.teamcode.modules.Module;
 
 @Autonomous(name = "Test")
-public class AutonomousTestA1 extends AutonomousTestB1 {
+public class AutonomousTestB1 extends IMUAutonomous {
     HandModule grab;
     DriveModule drive;
     HookModule drag;
@@ -18,7 +18,7 @@ public class AutonomousTestA1 extends AutonomousTestB1 {
     double drivetime = 1.5;
     double strafetime = 1;
     @Override
-    public Stage[] setStages() {
+        public Stage[] setStages() {
         drive = new DriveModule(hardwareMap, null,null, null);
         grab = new HandModule(hardwareMap, null, null, null);
         drag = new HookModule(hardwareMap, null, null, null);
@@ -56,7 +56,7 @@ public class AutonomousTestA1 extends AutonomousTestB1 {
                     @Override
                     public boolean run(double heading, ElapsedTime runtime) {
                         if (runtime.seconds() < 1.3) {
-                            drive.move(DriveModule.Movement.Right, speed);
+                            drive.move(DriveModule.Movement.Left, speed);
                             return false;
                         } else {
                             return true;
@@ -84,7 +84,7 @@ public class AutonomousTestA1 extends AutonomousTestB1 {
                     @Override
                     public boolean run(double heading, ElapsedTime runtime) {
                         if (runtime.seconds() < 2) {
-                          grab.hand.setPosition(HandModule.OPEN);
+                            grab.hand.setPosition(HandModule.OPEN);
                             return false;
                         } else {
                             return true;
@@ -140,7 +140,7 @@ public class AutonomousTestA1 extends AutonomousTestB1 {
                     @Override
                     public boolean run(double heading, ElapsedTime runtime) {
                         if (runtime.seconds() < 1.5) {
-                            drive.move(DriveModule.Movement.Left, speed);
+                            drive.move(DriveModule.Movement.Right, speed);
                             return false;
                         } else {
                             return true;
@@ -168,7 +168,7 @@ public class AutonomousTestA1 extends AutonomousTestB1 {
                     @Override
                     public boolean run(double heading, ElapsedTime runtime) {
                         if (runtime.seconds() < 2.2) {
-                            drive.move(DriveModule.Movement.Left, speed);
+                            drive.move(DriveModule.Movement.Right, speed);
                             return false;
                         } else {
                             return true;
