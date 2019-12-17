@@ -94,6 +94,22 @@ public abstract class ModularOpMode extends OpMode {
 
     }
 
+    /**
+     * <p>This is run REPEATEDLY upon the INIT button being pressed and is run repeatedly until
+     *     the play button is pressed.</p>
+     */
+    @Override
+    public final void init_loop() {
+
+        for (int i = 0; i < modules.length; i++) {
+
+            modules[i].init_loop();
+            modules[i].telemetry();
+
+        }
+
+    }
+
     @Override
     public final void loop() {
 

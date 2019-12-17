@@ -31,6 +31,7 @@ public abstract class Module {
 //    }
 
     public abstract void init();
+    public void init_loop() {}
     public abstract void loop();
     public abstract void telemetry();
 }
