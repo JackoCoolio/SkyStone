@@ -15,6 +15,8 @@ public abstract class ModularOpMode extends OpMode {
     private Class<? extends Module>[] types;
     private Module[] modules;
 
+    private boolean initialized = false;
+
 //    public static Gamepad gamepadA;
 //    public static Gamepad gamepadB;
 
@@ -67,7 +69,7 @@ public abstract class ModularOpMode extends OpMode {
                 e.printStackTrace();
             } catch (InvocationTargetException e) {
                 telemetry.addData("INVOCATION EXCEPTION", "Something went wrong!");
-                e.printStackTrace();
+                telemetry.addData("Error", e.getCause());
             } catch (InstantiationException e) {
                 telemetry.addData("INSTANTIATION EXCEPTION", "Could not instantiate a " + clazz.getSimpleName() + " module!");
                 e.printStackTrace();
@@ -90,6 +92,7 @@ public abstract class ModularOpMode extends OpMode {
             }
         }
 
+        initialized = true;
         telemetry.addData("Status","Initialized");
 
     }
@@ -100,13 +103,14 @@ public abstract class ModularOpMode extends OpMode {
      */
     @Override
     public final void init_loop() {
-
-        for (int i = 0; i < modules.length; i++) {
-
-            modules[i].init_loop();
-            modules[i].telemetry();
-
-        }
+//        if (!initialized) return;
+//
+//        for (int i = 0; i < this.modules.length; i++) {
+//
+//            this.modules[i].init_loop();
+//            this.modules[i].telemetry();
+//
+//        }
 
     }
 

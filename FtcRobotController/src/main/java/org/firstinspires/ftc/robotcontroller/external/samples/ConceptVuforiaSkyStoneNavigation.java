@@ -29,12 +29,10 @@
 
 package org.firstinspires.ftc.robotcontroller.external.samples;
 
-import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import org.firstinspires.ftc.robotcore.external.ClassFactory;
-import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
 import org.firstinspires.ftc.robotcore.external.matrices.OpenGLMatrix;
 import org.firstinspires.ftc.robotcore.external.matrices.VectorF;
 import org.firstinspires.ftc.robotcore.external.navigation.Orientation;
@@ -84,7 +82,7 @@ import static org.firstinspires.ftc.robotcore.external.navigation.VuforiaLocaliz
 
 
 @TeleOp(name="SKYSTONE Vuforia Nav", group ="Concept")
-@Disabled
+//@Disabled
 public class ConceptVuforiaSkyStoneNavigation extends LinearOpMode {
 
     // IMPORTANT:  For Phone Camera, set 1) the camera source and 2) the orientation, based on how your phone is mounted:
@@ -108,8 +106,8 @@ public class ConceptVuforiaSkyStoneNavigation extends LinearOpMode {
      * Once you've obtained a license key, copy the string from the Vuforia web site
      * and paste it in to your code on the next line, between the double quotes.
      */
-    private static final String VUFORIA_KEY =
-            " -- YOUR NEW VUFORIA KEY GOES HERE  --- ";
+    private static final String VUFORIA_KEY = "AWMlC9f/////AAAAGeOXa++ktE94mmUviVs0/wFNxTbeNFXNoDnFbtRGw0i7LV4HQy9CcOMV6LjFVuq98bJ+KcjR97ZSI6DxLWJtxUebeki327eC2XZqu9KeYoUSX6GojrXcOZo5xFBwqvCSiw+WmS8aNuxL3P/RiAe0UoejfeocHRDARewCHM3LUrctLJFXeEbUTscdlbirMkUbwjJ1vCtNJqeOIcapzSe/sYUA8EWthiK4mskGjt99MNpCt9y9QQcPwlCeFT+HMOXyYi2+LRi+hdyA/XlZnkc90B7R8k6GAp4pWHSmKmdRQtows4qw+TJwgiZjqPbdMuKTM/UZjuaoCAIGwCYFDslpLtmOCvX1XdEv46kYk0v/9nzd";
+
 
     // Since ImageTarget trackables use mm to specifiy their dimensions, we must use mm for all the physical dimension.
     // We will define some constants and conversions here
