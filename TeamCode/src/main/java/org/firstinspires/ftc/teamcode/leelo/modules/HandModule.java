@@ -14,7 +14,7 @@ public class HandModule extends Module {
 
     Button handToggle;
 
-    public static final float OPEN = .28f, CLOSED = .55f;
+    public static final float CLOSED = .27f, OPEN = .7f;
 
     public HandModule(HardwareMap hardwareMap, Gamepad gamepad1, Gamepad gamepad2, Telemetry telemetry) {
         super(hardwareMap, gamepad1, gamepad2, telemetry);
@@ -24,7 +24,7 @@ public class HandModule extends Module {
     public void init() {
         hand = hardwareMap.servo.get("hand");
         hand.setDirection(Servo.Direction.REVERSE);
-        handToggle = new Button(false);
+        handToggle = new Button(true);
     }
 
     @Override
