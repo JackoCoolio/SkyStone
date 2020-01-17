@@ -14,7 +14,7 @@ public class HandModule extends Module {
 
     Button handToggle;
 
-    public static final float OPEN = .5f, CLOSED = 1f;
+    public static final float OPEN = .28f, CLOSED = .55f;
 
     public HandModule(HardwareMap hardwareMap, Gamepad gamepad1, Gamepad gamepad2, Telemetry telemetry) {
         super(hardwareMap, gamepad1, gamepad2, telemetry);
@@ -35,10 +35,12 @@ public class HandModule extends Module {
         } else {
             hand.setPosition(OPEN);
         }
+//        hand.setPosition(gamepad1.right_trigger);
     }
 
     @Override
     public void telemetry() {
-        telemetry.addData("Hand Position", handToggle.getState()? "closed" : "open");
+        //telemetry.addData("Hand Position", handToggle.getState()? "closed" : "open");
+        telemetry.addData("Servo",hand.getPosition());
     }
 }

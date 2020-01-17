@@ -5,8 +5,8 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.teamcode.leelo.modules.DriveModule;
 
-@Autonomous(name="ParkNearLeft")
-public class AutoTest1 extends AutonomousTestA1 {
+@Autonomous(name="ParkFarRight")
+public class AutoTestB2 extends AutonomousTestA1 {
     DriveModule drive;
     double speed = .3;
 
@@ -30,7 +30,7 @@ public class AutoTest1 extends AutonomousTestA1 {
 
                     @Override
                     public boolean run(double heading, ElapsedTime runtime) {
-                        if (runtime.seconds() < .3) {
+                        if (runtime.seconds() < 1.25) {
                             drive.move(DriveModule.Movement.Forward, .3);
                             return false;
                         } else {
@@ -55,31 +55,15 @@ public class AutoTest1 extends AutonomousTestA1 {
 
                     @Override
                     public boolean run(double heading, ElapsedTime runtime) {
-                        if (runtime.seconds() < .4) {
-                            drive.move(DriveModule.Movement.Left, .5);
+                        if (runtime.seconds() < .8) {
+                            drive.move(DriveModule.Movement.Right, .5);
                             return false;
                         } else {
                             drive.setMotors(0,0,0,0);
                             return true;
                         }
                     }
-                },
-
-                new Stage() {
-                    @Override
-                    public void setup(double heading, ElapsedTime runtime) {runtime.reset();}
-
-                    @Override
-                    public boolean run(double heading, ElapsedTime runtime) {
-                        if (runtime.seconds() < .3) {
-                            drive.move(DriveModule.Movement.Backward, .3);
-                            return false;
-                        } else {
-                            drive.setMotors(0,0,0,0);
-                            return true;
-                        }
-                    }
-                },
+                }
         };
     }
 }

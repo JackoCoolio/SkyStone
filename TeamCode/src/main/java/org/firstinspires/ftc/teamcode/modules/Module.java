@@ -9,7 +9,7 @@ public abstract class Module {
 
     protected final HardwareMap hardwareMap;
     protected final Telemetry telemetry;
-    Gamepad gamepad1, gamepad2;
+    protected Gamepad gamepad1, gamepad2;
 
     public Module(HardwareMap hardwareMap, Gamepad gamepad1, Gamepad gamepad2, Telemetry telemetry) {
         this.hardwareMap = hardwareMap;

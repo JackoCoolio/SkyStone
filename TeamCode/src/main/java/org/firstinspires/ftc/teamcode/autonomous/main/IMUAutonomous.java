@@ -17,8 +17,6 @@ import org.firstinspires.ftc.robotcore.external.navigation.VuforiaLocalizer;
 import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackable;
 import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackables;
 
-import java.util.HashMap;
-
 /**
  * Created by jacktwamb52 on 1/10/2018.
  */
@@ -43,6 +41,7 @@ public abstract class IMUAutonomous extends OpMode {
     private int stage = 0;
     private Stage[] stages;
     private boolean runSetup = true;
+    private boolean resetHeading = true;
 
     // IMU //
     private double offset = 0;
@@ -108,6 +107,8 @@ public abstract class IMUAutonomous extends OpMode {
             }
         }
 
+        telemetry.addData("Runtime",runtime);
+
         try {
             telemetry.addData("Stage",stages[stage].getName(stage));
             cont = stages[stage].run(heading, runtime);
@@ -128,6 +129,7 @@ public abstract class IMUAutonomous extends OpMode {
     }
 
     final protected void enableIMU(boolean b) {useIMU=b;}
+    final protected void resetHeadingEveryStage(boolean b) {resetHeading = false;}
     final protected void enableVuforia(boolean b) {/*useVuforia=b;*/}
 
     final double getTargetAngle(String corner) {

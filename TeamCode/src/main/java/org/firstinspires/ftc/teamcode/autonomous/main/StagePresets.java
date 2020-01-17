@@ -26,6 +26,10 @@ public class StagePresets {
         return new DriveStage(speed, inches, timeout, telemetry, groups);
     }
 
+    public static abstract class ResetTimeStage extends IMUAutonomous.Stage {
+        @Override public void setup(double heading, ElapsedTime runtime) { runtime.reset(); }
+    }
+
 //    public static IMUAutonomous.Stage drive(final double speed, final DelayedValue<Double> inchGetter, final double timeout, final Telemetry telemetry, final MotorGroup... _groups) {
 //        final MotorGroup[] groups;
 //        if (_groups.length == 0) {

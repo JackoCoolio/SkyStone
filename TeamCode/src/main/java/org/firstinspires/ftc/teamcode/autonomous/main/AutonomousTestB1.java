@@ -1,15 +1,13 @@
 package org.firstinspires.ftc.teamcode.autonomous.main;
+
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
-import org.firstinspires.ftc.teamcode.autonomous.main.IMUAutonomous;
-import org.firstinspires.ftc.teamcode.leelo.modules.ArmModule;
 import org.firstinspires.ftc.teamcode.leelo.modules.DriveModule;
 import org.firstinspires.ftc.teamcode.leelo.modules.HandModule;
 import org.firstinspires.ftc.teamcode.leelo.modules.HookModule;
-import org.firstinspires.ftc.teamcode.modules.Module;
 
-@Autonomous(name = "Test")
+@Autonomous(name = "TestB1")
 public class AutonomousTestB1 extends IMUAutonomous {
     HandModule grab;
     DriveModule drive;
@@ -49,7 +47,7 @@ public class AutonomousTestB1 extends IMUAutonomous {
                         }
                     }
                 },
-                //strafe to the right
+                //strafe to the left
                 new Stage() {
                     @Override
                     public void setup(double heading, ElapsedTime runtime) {runtime.reset();}
@@ -133,7 +131,7 @@ public class AutonomousTestB1 extends IMUAutonomous {
                         }
                     }
                 },
-                //strafes to the left
+                //strafes to the right
                 new Stage() {
                     @Override
                     public void setup(double heading, ElapsedTime runtime) {runtime.reset();}

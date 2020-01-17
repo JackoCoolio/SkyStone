@@ -4,14 +4,13 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Gamepad;
 import com.qualcomm.robotcore.hardware.HardwareMap;
-import com.qualcomm.robotcore.hardware.configuration.typecontainers.MotorConfigurationType;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.teamcode.modules.Module;
 
 public class DriveModule extends Module {
 
-    DcMotor front_left, front_right, rear_left, rear_right;
+    public DcMotor front_left, front_right, rear_left, rear_right;
 
     public static final float FAST_SPEED = .8f;
     public static final float SLOW_SPEED = .4f;
@@ -40,7 +39,8 @@ public class DriveModule extends Module {
         front_right = hardwareMap.dcMotor.get("rear_right");
         rear_left = hardwareMap.dcMotor.get("rear_left");
         rear_right = hardwareMap.dcMotor.get("front_right");
-        rear_left.setDirection(DcMotorSimple.Direction.REVERSE);
+        rear_right.setDirection(DcMotorSimple.Direction.REVERSE);
+        front_right.setDirection(DcMotorSimple.Direction.REVERSE);
 
         front_right.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         front_left.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
@@ -57,10 +57,10 @@ public class DriveModule extends Module {
                     setMotors(-speed, -speed, -speed, -speed);
                 break;
             case Left:
-                    setMotors(speed, -speed, -speed, speed);
+                    setMotors(-speed, speed, speed, -speed);
                 break;
             case Right:
-                    setMotors(-speed, speed, speed, -speed);
+                    setMotors(speed, -speed, -speed, speed);
                 break;
             case CW:
                     setMotors(speed, -speed, speed, -speed);
@@ -73,9 +73,9 @@ public class DriveModule extends Module {
 
     public void setMotors(double fl, double fr, double rl, double rr) {
         front_left.setPower(fl);
-        front_right.setPower(fr);
+        front_right.setPower(rr);
         rear_left.setPower(rl);
-        rear_right.setPower(rr);
+        rear_right.setPower(fr);
     }
 
     @Override
@@ -95,7 +95,7 @@ public class DriveModule extends Module {
         final double v3 = speed*(r * Math.sin(robotAngle) + rightX);
         final double v4 = speed*(r * Math.cos(robotAngle) - rightX);
 
-        setMotors(v1, v4, v3, v2);
+        setMotors(v1, v2, v3, v4);
     }
 
     @Override

@@ -5,8 +5,8 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.teamcode.leelo.modules.DriveModule;
 
-@Autonomous(name="ParkNearLeft")
-public class AutoTest1 extends AutonomousTestA1 {
+@Autonomous(name="ParkNearRight")
+public class AutoTestB1 extends AutonomousTestA1 {
     DriveModule drive;
     double speed = .3;
 
@@ -56,7 +56,7 @@ public class AutoTest1 extends AutonomousTestA1 {
                     @Override
                     public boolean run(double heading, ElapsedTime runtime) {
                         if (runtime.seconds() < .4) {
-                            drive.move(DriveModule.Movement.Left, .5);
+                            drive.move(DriveModule.Movement.Right, .5);
                             return false;
                         } else {
                             drive.setMotors(0,0,0,0);
@@ -64,7 +64,6 @@ public class AutoTest1 extends AutonomousTestA1 {
                         }
                     }
                 },
-
                 new Stage() {
                     @Override
                     public void setup(double heading, ElapsedTime runtime) {runtime.reset();}

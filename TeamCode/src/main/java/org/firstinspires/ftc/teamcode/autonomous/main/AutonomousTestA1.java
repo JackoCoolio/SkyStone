@@ -1,15 +1,13 @@
 package org.firstinspires.ftc.teamcode.autonomous.main;
+
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
-import org.firstinspires.ftc.teamcode.autonomous.main.IMUAutonomous;
-import org.firstinspires.ftc.teamcode.leelo.modules.ArmModule;
 import org.firstinspires.ftc.teamcode.leelo.modules.DriveModule;
 import org.firstinspires.ftc.teamcode.leelo.modules.HandModule;
 import org.firstinspires.ftc.teamcode.leelo.modules.HookModule;
-import org.firstinspires.ftc.teamcode.modules.Module;
 
-@Autonomous(name = "Test")
+@Autonomous(name = "TestA1")
 public class AutonomousTestA1 extends AutonomousTestB1 {
     HandModule grab;
     DriveModule drive;
@@ -23,46 +21,6 @@ public class AutonomousTestA1 extends AutonomousTestB1 {
         grab = new HandModule(hardwareMap, null, null, null);
         drag = new HookModule(hardwareMap, null, null, null);
         return new Stage[] {
-                //Close the hand
-                new Stage() {
-                    @Override
-                    public boolean run(double heading, ElapsedTime runtime) {
-                        if (runtime.seconds() < drivetime) {
-                            grab.hand.setPosition(HandModule.CLOSED);
-                            return false;
-                        } else {
-                            return true;
-                        }
-                    }
-                },
-                //drive forward
-                new Stage() {
-                    @Override
-                    public void setup(double heading, ElapsedTime runtime) {runtime.reset();}
-                    @Override
-                    public boolean run(double heading, ElapsedTime runtime) {
-                        if (runtime.seconds() < 1.5) {
-                            drive.move(DriveModule.Movement.Forward, speed);
-                            return false;
-                        } else {
-                            return true;
-                        }
-                    }
-                },
-                //strafe to the right
-                new Stage() {
-                    @Override
-                    public void setup(double heading, ElapsedTime runtime) {runtime.reset();}
-                    @Override
-                    public boolean run(double heading, ElapsedTime runtime) {
-                        if (runtime.seconds() < 1.3) {
-                            drive.move(DriveModule.Movement.Right, speed);
-                            return false;
-                        } else {
-                            return true;
-                        }
-                    }
-                },
                 //drive forward
                 new Stage() {
                     @Override
@@ -77,14 +35,40 @@ public class AutonomousTestA1 extends AutonomousTestB1 {
                         }
                     }
                 },
-                //close the hand to drop the block
+
+                //strafe to the right
                 new Stage() {
                     @Override
                     public void setup(double heading, ElapsedTime runtime) {runtime.reset();}
                     @Override
                     public boolean run(double heading, ElapsedTime runtime) {
-                        if (runtime.seconds() < 2) {
-                          grab.hand.setPosition(HandModule.OPEN);
+                        if (runtime.seconds() < .8) {
+                            drive.move(DriveModule.Movement.Right, speed);
+                            return false;
+                        } else {
+                            return true;
+                        }
+                    }
+                },
+                //drive forward
+                new Stage() {
+                    @Override
+                    public void setup(double heading, ElapsedTime runtime) {runtime.reset();}
+                    @Override
+                    public boolean run(double heading, ElapsedTime runtime) {
+                        if (runtime.seconds() < .5) {
+                            drive.move(DriveModule.Movement.Forward, speed);
+                            return false;
+                        } else {
+                            return true;
+                        }
+                    }
+                },
+                //PAUSE
+                new Stage() {
+                    @Override
+                    public boolean run(double heading, ElapsedTime runtime) {
+                        if (runtime.seconds() < 3) {
                             return false;
                         } else {
                             return true;
@@ -97,8 +81,18 @@ public class AutonomousTestA1 extends AutonomousTestB1 {
                     public void setup(double heading, ElapsedTime runtime) {runtime.reset();}
                     @Override
                     public boolean run(double heading, ElapsedTime runtime) {
-                        if (runtime.seconds() < 2) {
+                        if (runtime.seconds() < 2.5) {
                             drag.setPosition(HookModule.Position.Down);
+                            return false;
+                        } else {
+                            return true;
+                        }
+                    }
+                },
+                new Stage() {
+                    @Override
+                    public boolean run(double heading, ElapsedTime runtime) {
+                        if (runtime.seconds() < 2) {
                             return false;
                         } else {
                             return true;
@@ -111,8 +105,18 @@ public class AutonomousTestA1 extends AutonomousTestB1 {
                     public void setup(double heading, ElapsedTime runtime) {runtime.reset();}
                     @Override
                     public boolean run(double heading, ElapsedTime runtime) {
-                        if (runtime.seconds() < 2) {
+                        if (runtime.seconds() < 1) {
                             drive.move(DriveModule.Movement.Backward, speed);
+                            return false;
+                        } else {
+                            return true;
+                        }
+                    }
+                },
+                new Stage() {
+                    @Override
+                    public boolean run(double heading, ElapsedTime runtime) {
+                        if (runtime.seconds() < 2) {
                             return false;
                         } else {
                             return true;
@@ -133,13 +137,23 @@ public class AutonomousTestA1 extends AutonomousTestB1 {
                         }
                     }
                 },
+                new Stage() {
+                    @Override
+                    public boolean run(double heading, ElapsedTime runtime) {
+                        if (runtime.seconds() < 2) {
+                            return false;
+                        } else {
+                            return true;
+                        }
+                    }
+                },
                 //strafes to the left
                 new Stage() {
                     @Override
                     public void setup(double heading, ElapsedTime runtime) {runtime.reset();}
                     @Override
                     public boolean run(double heading, ElapsedTime runtime) {
-                        if (runtime.seconds() < 1.5) {
+                        if (runtime.seconds() < .5) {
                             drive.move(DriveModule.Movement.Left, speed);
                             return false;
                         } else {
@@ -153,7 +167,7 @@ public class AutonomousTestA1 extends AutonomousTestB1 {
                     public void setup(double heading, ElapsedTime runtime) {runtime.reset();}
                     @Override
                     public boolean run(double heading, ElapsedTime runtime) {
-                        if (runtime.seconds() < 1.5) {
+                        if (runtime.seconds() < .8) {
                             drive.move(DriveModule.Movement.Forward, speed);
                             return false;
                         } else {
@@ -167,7 +181,7 @@ public class AutonomousTestA1 extends AutonomousTestB1 {
                     public void setup(double heading, ElapsedTime runtime) {runtime.reset();}
                     @Override
                     public boolean run(double heading, ElapsedTime runtime) {
-                        if (runtime.seconds() < 2.2) {
+                        if (runtime.seconds() < .8) {
                             drive.move(DriveModule.Movement.Left, speed);
                             return false;
                         } else {
