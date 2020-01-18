@@ -4,6 +4,7 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.teamcode.leelo.modules.DriveModule;
+import org.firstinspires.ftc.teamcode.leelo.modules.HandModule;
 import org.firstinspires.ftc.teamcode.leelo.modules.HookModule;
 
 @Autonomous(name = "Drag Foundation Blue")
@@ -35,6 +36,7 @@ public class DragFoundationAutoB extends IMUAutonomous {
 
         final DriveModule drive = new DriveModule(hardwareMap, null, null, telemetry);
         final HookModule hook = new HookModule(hardwareMap, null, null, telemetry);
+        final HandModule hand = new HandModule(hardwareMap, null, null, telemetry);
 
         resetHeadingEveryStage(false);
 
@@ -45,6 +47,7 @@ public class DragFoundationAutoB extends IMUAutonomous {
                     public boolean run(double heading, ElapsedTime runtime) {
 
                         hook.setPosition(HookModule.Position.Up);
+                        hand.setPosition(HandModule.Position.OPEN);
 
                         if (runtime.seconds() < diagonalTime) {
                             drive.setMotors(0, diagonalSpeed, diagonalSpeed, 0);
