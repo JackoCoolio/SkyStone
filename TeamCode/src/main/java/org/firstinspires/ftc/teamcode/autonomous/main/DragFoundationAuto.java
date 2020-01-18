@@ -38,7 +38,7 @@ public class DragFoundationAuto extends IMUAutonomous {
 
         resetHeadingEveryStage(false);
 
-        return new Stage[] {
+        return new Stage[]{
                 new Stage() {
 
                     @Override
@@ -49,7 +49,7 @@ public class DragFoundationAuto extends IMUAutonomous {
                         if (runtime.seconds() < diagonalTime) {
                             drive.setMotors(diagonalSpeed, 0, 0, diagonalSpeed);
                         } else {
-                            drive.setMotors(0,0,0,0);
+                            drive.setMotors(0, 0, 0, 0);
                             return true;
                         }
 
@@ -60,7 +60,10 @@ public class DragFoundationAuto extends IMUAutonomous {
                 },
                 new Stage() {
 
-                    @Override public void setup(double heading, ElapsedTime runtime) { runtime.reset(); }
+                    @Override
+                    public void setup(double heading, ElapsedTime runtime) {
+                        runtime.reset();
+                    }
 
                     @Override
                     public boolean run(double heading, ElapsedTime runtime) {
@@ -68,7 +71,7 @@ public class DragFoundationAuto extends IMUAutonomous {
                         if (runtime.seconds() < forwardTime) {
                             drive.setMotors(forwardSpeed, forwardSpeed, forwardSpeed, forwardSpeed);
                         } else {
-                            drive.setMotors(0,0,0,0);
+                            drive.setMotors(0, 0, 0, 0);
                             return true;
                         }
 
@@ -83,7 +86,7 @@ public class DragFoundationAuto extends IMUAutonomous {
                             drive.move(DriveModule.Movement.Forward, dockSpeed);
                             return false;
                         } else {
-                            drive.setMotors(0,0,0,0);
+                            drive.setMotors(0, 0, 0, 0);
                             return true;
                         }
                     }
@@ -96,7 +99,10 @@ public class DragFoundationAuto extends IMUAutonomous {
 //                },
                 new Stage() {
 
-                    @Override public void setup(double heading, ElapsedTime runtime) { runtime.reset(); }
+                    @Override
+                    public void setup(double heading, ElapsedTime runtime) {
+                        runtime.reset();
+                    }
 
                     @Override
                     public boolean run(double heading, ElapsedTime runtime) {
@@ -108,7 +114,10 @@ public class DragFoundationAuto extends IMUAutonomous {
                 },
                 new Stage() {
 
-                    @Override public void setup(double heading, ElapsedTime runtime) { runtime.reset(); }
+                    @Override
+                    public void setup(double heading, ElapsedTime runtime) {
+                        runtime.reset();
+                    }
 
                     @Override
                     public boolean run(double heading, ElapsedTime runtime) {
@@ -116,7 +125,7 @@ public class DragFoundationAuto extends IMUAutonomous {
                         if (runtime.seconds() < pullTime) {
                             drive.setMotors(-pullSpeed, -pullSpeed, -pullSpeed, -pullSpeed);
                         } else {
-                            drive.setMotors(0,0,0,0);
+                            drive.setMotors(0, 0, 0, 0);
                             return true;
                         }
 
@@ -133,7 +142,26 @@ public class DragFoundationAuto extends IMUAutonomous {
 
                     }
                 },
+
                 new Stage() {
+                    @Override
+                    public void setup(double heading, ElapsedTime runtime) {runtime.reset();}
+
+                    @Override
+                    public boolean run(double heading, ElapsedTime runtime) {
+                        if (runtime.seconds() < .4) {
+                            drive.move(DriveModule.Movement.Left, .5);
+                            return false;
+                        } else {
+                            drive.setMotors(0,0,0,0);
+                            return true;
+                        }
+                    }
+                },
+
+
+
+/*                new Stage() {
                     @Override
                     public boolean run(double heading, ElapsedTime runtime) {
                         if (Math.abs(heading) > 1f)
@@ -148,46 +176,46 @@ public class DragFoundationAuto extends IMUAutonomous {
                             return true;
                         }
                     }
-                },
-                new Stage() {
+                },*/
+                /*    new Stage() {
 
-                    boolean aligning = true;
-                    float alignStartTime = 0f;
-                    float addAlignTime = 0f;
+                        boolean aligning = true;
+                        float alignStartTime = 0f;
+                        float addAlignTime = 0f;
 
-                    @Override public void setup(double heading, ElapsedTime runtime) { runtime.reset(); }
+                        @Override public void setup(double heading, ElapsedTime runtime) { runtime.reset(); }
 
-                    @Override
-                    public boolean run(double heading, ElapsedTime runtime) {
+                        @Override
+                        public boolean run(double heading, ElapsedTime runtime) {
 
-                        if (aligning) {
+                            if (aligning) {
 
-                            if (heading > alignTarget) {
-                                drive.move(DriveModule.Movement.CW, .5 * alignSpeed);
-                            } else if (heading < alignTarget) {
-                                drive.move(DriveModule.Movement.CCW, .5 * alignSpeed);
+                                if (heading > alignTarget) {
+                                    drive.move(DriveModule.Movement.CW, .5 * alignSpeed);
+                                } else if (heading < alignTarget) {
+                                    drive.move(DriveModule.Movement.CCW, .5 * alignSpeed);
+                                } else {
+                                    aligning = false;
+                                    addAlignTime += runtime.seconds() - alignStartTime;
+                                }
                             } else {
-                                aligning = false;
-                                addAlignTime += runtime.seconds() - alignStartTime;
+                                if (Math.abs(heading) > alignThreshold) {
+                                    aligning = true;
+                                    alignStartTime = (float) runtime.seconds();
+                                } else {
+                                    drive.move(DriveModule.Movement.Left, lineSpeed);
+                                }
                             }
-                        } else {
-                            if (Math.abs(heading) > alignThreshold) {
-                                aligning = true;
-                                alignStartTime = (float) runtime.seconds();
-                            } else {
-                                drive.move(DriveModule.Movement.Left, lineSpeed);
+
+                            if (runtime.seconds() >= lineTime + addAlignTime) {
+                                drive.setMotors(0,0,0,0);
+                                return true;
                             }
+
+                            return false;
+
                         }
-
-                        if (runtime.seconds() >= lineTime + addAlignTime) {
-                            drive.setMotors(0,0,0,0);
-                            return true;
-                        }
-
-                        return false;
-
-                    }
-                }
+                    }*/
         };
     }
 }
