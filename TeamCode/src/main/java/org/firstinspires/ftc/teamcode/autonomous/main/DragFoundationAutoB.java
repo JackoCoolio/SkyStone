@@ -21,14 +21,14 @@ public class DragFoundationAutoB extends IMUAutonomous {
 
     private static float hookTime = 2.5f;
 
-    private static float pullTime = 2.25f;
+    private static float pullTime = 2.5f;
     private static float pullSpeed = .35f;
 
     private static float alignSpeed = .3f;
     private static float alignThreshold = 3f;
     private static float alignTarget = 1f;
 
-    private static float lineTime = 1.8f;
+    private static float lineTime = 2f;
     private static float lineSpeed = .5f;
 
     @Override
@@ -146,14 +146,14 @@ public class DragFoundationAutoB extends IMUAutonomous {
                     }
                 },
 
-                new Stage() {
+                new StagePresets.ResetTimeStage() {
                     @Override
                     public void setup(double heading, ElapsedTime runtime) {runtime.reset();}
 
                     @Override
                     public boolean run(double heading, ElapsedTime runtime) {
-                        if (runtime.seconds() < .4) {
-                            drive.move(DriveModule.Movement.Right, .5);
+                        if (runtime.seconds() < lineTime) {
+                            drive.move(DriveModule.Movement.Right, lineSpeed);
                             return false;
                         } else {
                             drive.setMotors(0,0,0,0);
