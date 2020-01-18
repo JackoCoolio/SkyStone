@@ -14,7 +14,7 @@ public class HandModule extends Module {
 
     Button handToggle;
 
-    public static final float CLOSED = .27f, OPEN = .7f;
+    public static final float CLOSED = .27f, OPEN = .85f;
 
     public HandModule(HardwareMap hardwareMap, Gamepad gamepad1, Gamepad gamepad2, Telemetry telemetry) {
         super(hardwareMap, gamepad1, gamepad2, telemetry);
@@ -31,11 +31,20 @@ public class HandModule extends Module {
     public void loop() {
         handToggle.update(gamepad1.right_bumper);
         if (handToggle.getState()) {
-            hand.setPosition(CLOSED);
+            setPosition(Position.CLOSED);
         } else {
-            hand.setPosition(OPEN);
+            setPosition(Position.OPEN);
         }
 //        hand.setPosition(gamepad1.right_trigger);
+    }
+
+    public enum Position {OPEN, CLOSED};
+    public void setPosition(Position pos) {
+        if (pos == Position.CLOSED) {
+            hand.setPosition(CLOSED);
+        } else if (pos == Position.OPEN) {
+            hand.setPosition(OPEN);
+        }
     }
 
     @Override
